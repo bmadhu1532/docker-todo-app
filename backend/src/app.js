@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors'); // ✅ Add this
 const connectDB = require('./config/db');
 const routes = require('./routes/index');
 
@@ -8,7 +9,13 @@ connectDB();
 
 const app = express();
 
-app.use(express.json()); // <-- This is important!
+// ✅ Enable CORS for frontend origin
+app.use(cors({
+    origin: 'http://localhost:3000', // <-- allow requests from React dev server
+    credentials: true, // optional: if you're using cookies or auth
+}));
+
+app.use(express.json());
 
 app.use('/api', routes);
 
