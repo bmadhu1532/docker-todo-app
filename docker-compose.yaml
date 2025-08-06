@@ -37,7 +37,6 @@ services:
     tty: true
     environment:
       - NODE_ENV=development
-      - REACT_APP_API_URL=http://localhost:5000
     volumes:
       - ./frontend:/app
       - /app/node_modules
